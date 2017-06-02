@@ -12,7 +12,6 @@ Words.prototype.count = function(str) {
         counts[word] = typeof counts[word] === 'function' ? undefined : counts[word];
         counts[word] = counts[word] ? counts[word] + 1 : 1;
     });
-    console.log(counts);
     return counts;
 }
 
