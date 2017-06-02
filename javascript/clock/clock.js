@@ -1,15 +1,16 @@
 var at = function(hr = 0, mn = 0) {
-    this.standardise = std;
-    this.toString = tStr;
-    this.equals = eq.bind(this);
-    this.plus = pls;
-    this.minus = mns;
-    this.time = this.standardise(hr, mn);
-    return ;
+    return standardise(hr, mn);
 }
 
-var std = function(hr, mn) {
-    let time = { "hour": hr, "minute": mn };
+var standardise = function(hr, mn) {
+    let time = {
+        "hour": hr,
+        "minute": mn,
+        "toString": tStr,
+        "plus": pls,
+        "minus": mns,
+        "equals": eq
+    };
 
     // Standardising minutes
     while (time.minute > 59) {
@@ -29,8 +30,8 @@ var std = function(hr, mn) {
 }
 
 var tStr = function() {
-    let hour = this.time.hour;
-    let minute = this.time.minute
+    let hour = this.hour;
+    let minute = this.minute
 
     let hr = hour < 10 ? `0${hour}` : hour;
     let mn = minute < 10 ? `0${minute}` : minute;
@@ -39,12 +40,11 @@ var tStr = function() {
 }
 
 var pls = function(min) {
-    this.time = this.standardise(this.time.hour, this.time.minute + min);
-    return this;
+    return standardise(this.hour, this.minute + min);
 }
 
 var mns = function(min) {
-    return pls(-min);
+    return standardise(this.hour, this.minute - min);
 }
 
 var eq = function(new_time) {
