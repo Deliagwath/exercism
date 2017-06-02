@@ -12,7 +12,9 @@ Anagram.prototype.matches = function(...candidates) {
     let parsed = candidates.map(word => [word, counts(word.toLowerCase())]);
     let anagrams = [];
     parsed.forEach(([word, count]) => {
-        if (count_equals(this.input_count, count)) { anagrams.push(word); }
+        if (count_equals(this.input_count, count)) {
+            anagrams.push(word);
+        }
     });
     return anagrams;
 }
