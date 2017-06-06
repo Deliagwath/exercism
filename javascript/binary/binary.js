@@ -1,26 +1,19 @@
 var Binary = function(binaryString) {
-    return {
-        toDecimal: function() { return this.decimal; },
-        decimal: convert(binaryString),
-    }
+    this.decimal = convert(binaryString);
+}
+
+Binary.prototype.toDecimal = function() {
+    return this.decimal;
 }
 
 var convert = function(binaryString) {
-    if (binaryString.match(/[^0-1]/g) || binaryString == '0') { return 0; }
-
-    // Constructing Stack Structure
-    let binaryArray = [];
+    let current = Math.pow(2, binaryString.length - 1);
+    let sum = 0;
     for (let digit of binaryString) {
-        binaryArray.push(digit);
+        if (!(digit == 0 || digit == 1)) { return 0; }
+        sum += digit * current;
+        current /= 2;
     }
-
-    // Sum
-    let current = 1, sum = 0;
-    do {
-        let digit = binaryArray.pop();
-        sum += digit == 1 ? current : 0;
-        current *= 2;
-    } while (binaryArray.length);
     return sum;
 }
 
