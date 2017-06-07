@@ -38,7 +38,7 @@ var random_char = function() {
 }
 
 var random_num = function() {
-    return Math.floor(Math.random() * 9);
+    return Math.floor(Math.random() * 10);
 }
 
 module.exports = Robot;
