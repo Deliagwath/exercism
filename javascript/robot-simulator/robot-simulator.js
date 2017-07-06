@@ -57,7 +57,7 @@ Robot.prototype.instructions = function(ins) {
 }
 
 Robot.prototype.evaluate = function(ins) {
-    ins.split("").forEach(command => this[this.ins[command]]());
+    this.instructions(ins).forEach(command => this[command]());
 }
 
 Robot.prototype.place = function(data) {
