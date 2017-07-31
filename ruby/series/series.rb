@@ -4,7 +4,7 @@ class Series
     end
     def slices(slice_len)
         raise ArgumentError.new("You dun goof'd") if slice_len > @num_str.length
-        @num_str.each_cons(slice_len) { |slice| slice.join }
+        @num_str.each_cons(slice_len).map(&:join)
     end
 end
 # No Book Keeping?
