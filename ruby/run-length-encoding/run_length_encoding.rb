@@ -3,7 +3,7 @@ class RunLengthEncoding
         return str if str.length == 0
         str.chars.chunk(&:itself).map { |c, a|
             a.length == 1 ? c : a.length.to_s + c
-        }.join("")
+        }.join
     end
     def self.decode(str)
         prevint = 0
@@ -13,11 +13,11 @@ class RunLengthEncoding
                 op = a.shift * prevint
                 prevint = 0
             elsif b
-                prevint = a.join("").to_i
+                prevint = a.join.to_i
                 a = []
             end
-            op += a.join("")
-        end.join("")
+            op += a.join
+        end.join
     end
 end
 module BookKeeping
