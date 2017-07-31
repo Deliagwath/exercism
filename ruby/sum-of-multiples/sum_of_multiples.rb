@@ -3,7 +3,7 @@ class SumOfMultiples
         @multiples = multiples
     end
     def to(limit)
-        (1..limit - 1).select { |n|
+        (1...limit).select { |n|
             @multiples.any? { |m| n % m == 0 }
         }.sum
     end
