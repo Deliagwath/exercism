@@ -1,7 +1,7 @@
 class RunLengthEncoding
     def self.encode(str)
         return str if str.length == 0
-        str.chars.chunk { |c| c }.map { |c, a|
+        str.chars.chunk(&:itself).map { |c, a|
             a.length == 1 ? c : a.length.to_s + c
         }.join("")
     end
@@ -13,10 +13,10 @@ class RunLengthEncoding
                 op = a.shift * prevint
                 prevint = 0
             elsif b
-                prevint = a.map { |i| i }.join("").to_i
+                prevint = a.join("").to_i
                 a = []
             end
-            op += a.map { |c| c }.join("")
+            op += a.join("")
         end.join("")
     end
 end
